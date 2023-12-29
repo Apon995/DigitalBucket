@@ -43,7 +43,7 @@ function AddEditTask({ setShowTaskModal }) {
 
                         id="task-name-input"
                         type="text"
-                        className=" bg-transparent  px-4 py-2 outline-none focus:border-0 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-1  ring-0  "
+                        className=" bg-transparent  px-4 py-2 outline-none  rounded-md text-sm  border-[2px] border-gray-600 focus:border-[#635fc7] "
                         placeholder=" e.g Take coffee break"
                     />
                 </div>
@@ -66,7 +66,7 @@ function AddEditTask({ setShowTaskModal }) {
                         Current Status
                     </label>
 
-                    <select className=" select-status flex-grow px-4 py-2 rounded-md text-sm bg-white focus:border-0  border-[1px] border-gray-300 focus:outline-[#635fc7] outline-none"
+                    <select className=" select-status flex-grow px-4 py-2 rounded-md text-sm border-[2px] outline-none border-gray-600 focus:border-[#635fc7] "
                     >
 
                         <option value="Todo">Todo</option>

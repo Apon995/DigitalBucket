@@ -224,4 +224,7 @@ form#contact button:hover {
 
 /* ----Dashboard-desgin-- */
 
-
+#activeTodo > .active{
+  background-color: #635fc7;
+  color:white;
+}
