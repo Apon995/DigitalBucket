@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useFetch from "../../CustomHooks/useFetch";
 import Swal from 'sweetalert2';
 
@@ -10,7 +10,7 @@ function DeleteBoard({ setIsDeleteModalOpen, BoardName, DeleteId, refetch }) {
 
 
     const HandleDelete = () => {
-        axiosFetch.delete(`/Todo?ID=${DeleteId}`)
+        axiosFetch.delete(`/DeleteBoard?ID=${DeleteId}`)
             .then(res => {
                 if (res?.data?.deletedCount == 1) {
                     setIsDeleteModalOpen(false)
@@ -26,8 +26,15 @@ function DeleteBoard({ setIsDeleteModalOpen, BoardName, DeleteId, refetch }) {
                     refetch();
                 }
             })
-            .catch(error => {
-                console.log(error);
+            .catch(() => {
+                Swal.fire({
+                    title: "Error !",
+                    text: "Some thing wrong try Again!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+
+                });
             })
 
     }

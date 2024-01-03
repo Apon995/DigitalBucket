@@ -3,7 +3,7 @@ import Logo from "../../assets/LogoFolder/Logo.png";
 import { NavLink } from 'react-router-dom';
 import DeleteBoard from '../Modals/DeleteBoard';
 
-function DashboardNav({ setShowTaskModal, ShowTaskModal, BoardName, DeleteId, refetch, setEditPopup, EditPopup  }) {
+function DashboardNav({ setType , isActive , setShowTaskModal, ShowTaskModal, BoardName, DeleteId, refetch, setEditPopup, EditPopup  }) {
   const [Popup, setPopup] = useState(false);
   const [IsDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -30,8 +30,8 @@ function DashboardNav({ setShowTaskModal, ShowTaskModal, BoardName, DeleteId, re
 
         </div>
         <div className='flex flex-row items-center gap-5'>
-          <button onClick={() => setShowTaskModal(!ShowTaskModal)} className=' px-4 py-2 rounded-md text-base font-medium text-white hover:opacity-90 active:bg-black bg-[#635fc7]'>+ Add New Task</button>
-          <button onClick={() => setPopup(!Popup)} className='text-gray-500 text-3xl font-medium'><i className="fa-solid fa-ellipsis-vertical"></i></button>
+          <button disabled={!isActive} onClick={() => setShowTaskModal(!ShowTaskModal)} className=' disabled:opacity-75 px-4 py-2 rounded-md text-base font-medium text-white hover:opacity-90 disabled:active:bg-[#635fc7] active:bg-black bg-[#635fc7]'>+ Add New Task</button>
+          <button disabled={!isActive} onClick={() => {setPopup(!Popup) , setType("new")}} className='text-gray-500 text-3xl font-medium'><i className="fa-solid fa-ellipsis-vertical"></i></button>
         </div>
 
 

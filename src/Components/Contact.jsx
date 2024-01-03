@@ -14,7 +14,7 @@ function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
         >
           <div>
             <div className='text-center space-y-2'>
@@ -56,7 +56,7 @@ function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
         >
 
 
@@ -111,7 +111,7 @@ function Contact() {
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 1 }}
       >
 
         <div
@@ -151,7 +151,7 @@ function Contact() {
       <motion.div
         initial={{ opacity: 0, }}
         whileInView={{ opacity: 1, }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 1 }}
       >
 
         <div className="px-[2%] rounded-md my-10">

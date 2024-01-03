@@ -6,11 +6,15 @@
 
 /* ---brower-scroll-bar-css-- */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  
+  
 }
 
 ::-webkit-scrollbar-thumb {
   background: #635fc7;
+  border-radius: 8px;
+  
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -227,4 +231,7 @@ form#contact button:hover {
 #activeTodo > .active{
   background-color: #635fc7;
   color:white;
+  transition: all 1s;
+
+
 }
