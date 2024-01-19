@@ -11,9 +11,9 @@ function Footer() {
     <>
       {
         location.pathname == '/Register' || location.pathname == '/Login' ? '' :
-          <div div className='w-full xl:px-[2%] px-[1%]  text-[#FFF] py-9 footer md:text-start text-center bg-[#635fc7] top-0 ' >
+          <div className='w-full  xl:px-[2%] px-[1%]  text-[#FFF] py-9 footer md:text-start text-center bg-[#635fc7] top-0 ' >
 
-            <div className=' flex md:flex-row flex-col items-center justify-between py-9'>
+            <div className=' flex md:flex-row flex-col  items-center justify-between  py-9'>
               {/* --footer-1st-col-- */}
               <div>
 
@@ -25,7 +25,7 @@ function Footer() {
 
 
                 <div>
-                  <p className='text-base  font-normal md:leading-[20px] leading-normal md:w-[260px] py-3 tracking-widest '>
+                  <p className='md:text-base text-sm font-normal md:leading-[20px] leading-normal w-[260px] py-3 tracking-widest '>
                     DigitalBucket is a web site who take your data & daily work save and secure !
                   </p>
                 </div>

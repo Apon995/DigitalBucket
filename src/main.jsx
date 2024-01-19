@@ -11,7 +11,7 @@ import Login from './Components/Login.jsx'
 import Register from './Components/Register.jsx'
 import Private from './Components/Private.jsx'
 import Dashboard from './Components/DashboardComponents/Dashboard.jsx'
-import DashboardHome from './Components/DashboardComponents/DashboardHome.jsx'
+
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
@@ -50,15 +50,7 @@ const router = createBrowserRouter([
   {
     path: '/Dashboard',
     element: <Private><Dashboard /> </Private>,
-    errorElement: <NotFound />,
-    children: [
-
-      {
-        path: '/Dashboard/Home',
-        element: <DashboardHome />
-      }
-
-    ]
+    errorElement: <NotFound />
   }
 
 ])
@@ -66,11 +58,13 @@ const router = createBrowserRouter([
 const queryclient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <QueryClientProvider client={queryclient}>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>,
+
+
+
 )

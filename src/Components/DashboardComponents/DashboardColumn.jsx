@@ -1,17 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import useFetch from "../../CustomHooks/useFetch";
-import StartOnLoad from "../LoadingComponents/StartOnLoad";
 import ShowTaskDetails from "../Modals/ShowTaskDetails";
 import AddEditTask from "../Modals/AddEditTask";
+import EditTaskpopup from "../Modals/EditTaskPopup";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { toast, ToastContainer } from "react-toastify";
+import Loading from "../LoadingComponents/Loading";
+import ding from '../../assets/sounds/ding.mp3'
 
-function DashboardColumn({ id, Datas, ShowTaskModal , setShowTaskModal  }) {
+
+
+
+
+function DashboardColumn({ isActive, Datas, ShowTaskModal}) {
     const axiosFetch = useFetch();
 
     const [ShowDetails, setShowDetails] = useState(false);
-    const [Rcvobj, setRcvObj] = useState({})
-
-
+    const [Rcvobj, setRcvObj] = useState({});
+    const [EditTask, setEditTask] = useState(false);
+    const [isEdit, setEdit] = useState(false);
+    const [typeEdit, setTypeEdit] = useState();
 
 
     const {
@@ -21,109 +30,194 @@ function DashboardColumn({ id, Datas, ShowTaskModal , setShowTaskModal  }) {
         refetch,
     } = useQuery({
         queryKey: ["signleList"],
-        queryFn: () => axiosFetch.get(`/Todo?ID=${id}`).then((res) => res?.data),
+        queryFn: () =>
+            axiosFetch.get(`/Todo?ID=${isActive}`).then((res) => res?.data),
     });
 
     useEffect(() => {
+
         refetch();
-    }, [id, Datas, ShowTaskModal]);
+    }, [isActive, Datas, ShowTaskModal]);
+
+
+
+    const HandleDragAndDrop = (result) => {
+        const { destination } = result;
+
+
+
+
+
+        if (!destination) {
+
+            return
+
+        }
+
+
+        const playSound = () => {
+            const audio = new Audio(ding);
+            audio.play();
+          };
+
+
+
+
+
+
+        axiosFetch.put(`/DropDown?ID=${isActive}`, result)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    playSound();
+                    refetch();
+                }
+                else {
+                    toast.warning("Something worng try again !", {
+                        position: "top-right",
+                        hideProgressBar: true,
+                        autoClose: 1500
+                    })
+
+                }
+
+            })
+            .catch(() => {
+                toast.warning("Something worng try again !", {
+                    position: "top-right",
+                    hideProgressBar: true,
+                    autoClose: 1500
+                })
+            })
+
+
+
+
+
+    };
+
+
 
 
     return (
         <>
-            <div className="flex  flex-wrap justify-between min-h-screen ">
-                {error ? (
-                    <div className="flex min-h-screen  w-full justify-center items-center text-xl font-medium text-red-600">
-                        Something Worng !
-                    </div>
-                ) : isPending ? (
-                    <StartOnLoad />
-                ) : (
-                    data?.Columns?.map((element, index) => (
-                        <div key={index} className="min-w-[285px]">
-                            <div className=" font-semibold flex items-center  gap-2 tracking-widest md:tracking-[.2em] text-[#828fa3]">
-                                <span
-                                    className={`rounded-full w-4 h-4 ${element?.id == 3 && "bg-blue-500"
-                                        } ${element?.id == 2 && "bg-green-500"}  ${element?.id == 1 && "bg-red-500"
-                                        }   `}
-                                ></span>
-                                {element?.columnName} ({element?.Task?.length})
-                            </div>
 
 
-                            {/* ----columnn-one--- */}
+            {
+                error ? <div className='text-center min-h-[60vh] flex items-center justify-center text-xl font-medium text-red-600'>Something Wrong ! try again ?</div> : isPending ? <Loading /> :
+                    <DragDropContext onDragEnd={HandleDragAndDrop}>
+                        <div className="flex flex-wrap justify-between min-h-screen">
 
                             {
-                                element?.id == 1 && element?.Task?.map((a, index) => <div key={index} onClick={() => {
-                                    setShowDetails(!ShowDetails)
-                                    setRcvObj({ 'ID': id, 'columnName': element?.columnName, 'title': a?.title, 'status': a?.status, 'description': a?.description })
-                                }} draggable={true} className=" max-w-[280px] break-words mt-5 first:my-5 rounded-lg  bg-white  dark:bg-white shadow-[#364e7e1a] py-4 px-3 shadow-lg hover:text-[#635fc7] dark:text-black text-black dark:hover:text-[#635fc7] cursor-pointer ">
+                                data?.Columns?.map((element) => (
 
-                                    <p className=" font-bold tracking-wide ">
-                                        {a?.title}
 
-                                    </p>
-                                    <p className=" font-bold text-sm tracking-tighter mt-2 text-gray-500">
-                                        {a?.status}
-                                    </p>
-                                </div>)
-                            }
+                                    <div key={element?.id} className="md:min-w-[350px] w-[290px] py-2 px-1 rounded-md">
+                                        <div className=" font-semibold flex items-center  gap-2 tracking-widest md:tracking-[.2em] text-[#828fa3]">
+                                            <span
+                                                className={`rounded-full w-4 h-4 ${element?.id == 3 && "bg-blue-500"
+                                                    } ${element?.id == 2 && "bg-green-500"}  ${element?.id == 1 && "bg-red-500"
+                                                    }   `}
+                                            ></span>
+                                            {element?.columnName} ({element?.Task?.length})
+                                        </div>
 
-                            {/* ----column--two--- */}
-                            {
-                                element?.id == 2 && element?.Task?.map((a, index) => <div key={index} onClick={() => {
-                                    setShowDetails(!ShowDetails)
-                                    setRcvObj({ 'ID': id, 'columnName': element?.columnName, 'title': a?.title, 'status': a?.status, 'description': a?.description })
-                                }
+                                        <Droppable droppableId={`${element.id}-${element.columnName}`} key={element.id} type="Task" >
+                                            {
+                                                (provided) => (
+                                                    <div {...provided.droppableProps} ref={provided.innerRef} className="flex flex-col gap-4 mt-4">
+                                                        {element?.Task?.map((a, index) => (
+                                                            <Draggable key={index} draggableId={`${a._id}`} index={index}>
+                                                                {
+                                                                    (provided) => (
+                                                                        <div draggable
+                                                                            {...provided.draggableProps}
+                                                                            {...provided.dragHandleProps}
+                                                                            ref={provided.innerRef}
+                                                                            onClick={() => {
+                                                                                setShowDetails(!ShowDetails);
+                                                                                setRcvObj({
+                                                                                    'TaskId': a._id,
+                                                                                    'columnId': element?.id,
+                                                                                    'columnName': element?.columnName,
+                                                                                    'title': a?.title,
+                                                                                    'status': a?.status,
+                                                                                    'description': a?.description
+                                                                                });
+                                                                            }}
+                                                                            className="flex-1 drop-shadow-xl  bg-white max-w-[320px] shadow-md p-4 rounded-lg cursor-pointer transition duration-300 hover:bg-gray-200"
+                                                                        >
+                                                                            <p className="font-bold">{a?.title}</p>
+                                                                            <p className="text-sm text-gray-500">{a?.status}</p>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            </Draggable>
 
-                                } draggable={true} className="max-w-[280px] break-words mt-5 first:my-5 rounded-lg  bg-white  dark:bg-white shadow-[#364e7e1a] py-6 px-3 shadow-lg hover:text-[#635fc7] dark:text-black text-black dark:hover:text-[#635fc7] cursor-pointer ">
-                                    <p className=" font-bold tracking-wide ">
-                                        {a?.title}
 
-                                    </p>
-                                    <p className=" font-bold text-sm tracking-tighter mt-2 text-gray-500">
-                                        {a?.status}
-                                    </p>
-                                </div>)
-                            }
+                                                        ))
 
-                            {/* ---column-three--- */}
-                            {
-                                element?.id == 3 && element?.Task?.map((a, index) => <div key={index} onClick={() => {
-                                    setShowDetails(!ShowDetails)
-                                    setRcvObj({ 'ID': id, 'columnName': element?.columnName, 'title': a?.title, 'status': a?.status, 'description': a?.description })
-                                }
+                                                        }
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )
+                                            }
 
-                                } draggable={true} className="max-w-[280px] break-words mt-5 first:my-5 rounded-lg  bg-white  dark:bg-white shadow-[#364e7e1a] py-6 px-3 shadow-lg hover:text-[#635fc7] dark:text-black text-black dark:hover:text-[#635fc7] cursor-pointer ">
-                                    <p className=" font-bold tracking-wide ">
-                                        {a?.title}
+                                        </Droppable>
+                                    </div>
+                                ))}
 
-                                    </p>
-                                    <p className=" font-bold text-sm tracking-tighter mt-2 text-gray-500">
-                                        {a?.status}
-                                    </p>
-                                </div>)
-                            }
+
+
+
 
                         </div>
 
+                    </DragDropContext>
+            }
 
-                    ))
-                )}
-            </div>
+
+
+
+
+
+
 
 
             {
-                ShowDetails && <ShowTaskDetails refetch={refetch} setShowDetails={setShowDetails} Rcvobj={Rcvobj} setShowTaskModal={setShowTaskModal} />
+                ShowDetails && (
+                    <ShowTaskDetails
+                        isActive={isActive}
+                        setEditTask={setEditTask}
+                        refetch={refetch}
+                        setShowDetails={setShowDetails}
+                        Rcvobj={Rcvobj}
+                    />
+                )
             }
             {
-                ShowTaskModal && <AddEditTask setShowTaskModal={setShowTaskModal} />
+                EditTask && (
+                    <EditTaskpopup
+                        setEdit={setEdit}
+                        setEditTask={setEditTask}
+                        setTypeEdit={setTypeEdit}
+                    />
+                )
             }
+            {
+                isEdit && (
+                    <AddEditTask
+                        setEdit={setEdit}
+                        refetch={refetch}
+                        typeEdit={typeEdit}
+                        isActive={isActive}
+                        Rcvobj={Rcvobj}
+                    />
+                )
+            }
+
+            <ToastContainer />
         </>
     );
 }
 
 export default DashboardColumn;
-
-
-

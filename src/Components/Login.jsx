@@ -9,9 +9,10 @@ import useAuth from '../CustomHooks/useAuth';
 function Login() {
     const navigate = useNavigate();
     const [eye, setEye] = useState(true);
-    const { LoginWithGooglePopup, LoginWithEmail } = useAuth();
+    const { user , LoginWithGooglePopup, LoginWithEmail } = useAuth();
 
     const location = useLocation();
+
 
 
     const HandleLogin = (e) => {
@@ -93,8 +94,8 @@ function Login() {
     return (
         <section className="bg-gray-50 dark:bg-white min-h-screen mt-28">
 
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
-                <div className="w-full bg-white shadow-lg rounded-lg  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white text-black ">
+            <div className="flex flex-col  items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
+                <div className="w-full bg-white z-50 shadow-xl rounded-lg  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white text-black ">
 
                     <div className='flex items-center gap-1 mx-auto text-center justify-center'>
                         <img src={Logo} alt="Logo" className='w-[30px]' />
@@ -109,18 +110,18 @@ function Login() {
                         <form onSubmit={HandleLogin} className="space-y-4 md:space-y-6" >
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your email</label>
-                                <input required type="email" name="email" id="email" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your email " />
+                                <input autoComplete='true' required type="email" name="email" id="email" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your email " />
                             </div>
                             <div className='relative'>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Password</label>
-                                <input required type={`${eye ? 'password' : 'text'}`} name="password" id="password" placeholder="Enter your password" className=" text-black border-2 focus:border-[#635fc7] outline-none duration-300 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-white  dark:placeholder-gray-400 dark:text-black  bg-white " />
-                                <button onClick={() => setEye(!eye)} className='absolute top-[39px] left-[350px]'><i className={`fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'} `}></i></button>
+                                <input autoComplete='true' required type={`${eye ? 'password' : 'text'}`} name="password" id="password" placeholder="Enter your password" className=" text-black border-2 focus:border-[#635fc7] outline-none duration-300 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-white  dark:placeholder-gray-400 dark:text-black  bg-white " />
+                                <button onClick={() => setEye(!eye)} className='absolute top-[39px] md:left-[350px] left-[193px]'><i className={`fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'} `}></i></button>
 
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-white dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" />
+                                        <input  id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-white dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" />
                                     </div>
                                     <div className="ml-3 text-sm">
                                         <label htmlFor="remember" className="text-[#adadad] dark:text-black">Remember me</label>
@@ -132,7 +133,8 @@ function Login() {
                             <button className="w-full text-white bg-[#635fc7]  font-medium rounded-lg text-base px-5 py-2.5 text-center active:bg-black  dark:bg-[#635fc7] dark:text-white ">Sign in</button>
                         </form>
 
-                        <p className='or-span text-black text-xl tracking-widest text-center'>--------------&&---------------</p>
+                        <p className='or-span text-black text-xl tracking-widest text-center hidden md:block'>--------------&&---------------</p>
+                        <p className='or-span text-black text-xl tracking-widest text-center md:hidden'>---------&----------</p>
                         <div className='social-icons'>
                             <button onClick={HandleGoogleLogin} ><i className="fa-brands fa-google"></i></button>
                             <button><i className="fa-brands fa-facebook"></i></button>

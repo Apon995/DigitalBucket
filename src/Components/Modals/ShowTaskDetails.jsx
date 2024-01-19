@@ -1,20 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import useFetch from '../../CustomHooks/useFetch';
-import EditBoardpopup from './EditBoardpopup';
+import { ToastContainer, toast } from 'react-toastify';
+import ding from '../../assets/sounds/ding.mp3'
 
 
-function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,}) {
- 
-    const [isTask , setIstask ] = useState(false);
-    
+
+function ShowTaskDetails({ isActive, setShowDetails, Rcvobj, refetch, setEditTask }) {
+
     const axiosFetch = useFetch();
+    const { TaskId, title, columnId, status, description, } = Rcvobj || {};
 
-    const { ID ,title, status, description } = Rcvobj || {};
+
+
+
+    const [data, setData] = useState();
+    const [updatestatus, setupdateStatus] = useState(status);
+
+
+
+
+    const playSound = () => {
+        const audio = new Audio(ding);
+        audio.play();
+      };
+
+
+
+    useEffect(() => {
+        if (isActive) {
+            axiosFetch
+                .get(`/Todo?ID=${isActive}`)
+                .then((res) => {
+                    setData(res?.data);
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
+
+    }, [isActive]);
+
+
 
 
     const HandleDelete = () => {
         setShowDetails(false)
+
+
 
         Swal.fire({
             title: "Delete this Todo ?",
@@ -27,42 +62,89 @@ function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,})
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axiosFetch.delete(`/DeleteTask?ID=${ID}&des=${description}&title=${title}&status=${status}`)
-                .then(res => {
-                    if(res.data.modifiedCount== 1){
+                axiosFetch.delete(`/DeleteTask?ID=${isActive}&TaskId=${TaskId}&columnId=${columnId}`)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.modifiedCount == 1) {
+                            Swal.fire({
+                                title: "Deleted Task",
+                                text: "Successfully Delete Task !",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 1500,
+
+                            });
+
+                            refetch();
+
+                        }
+                    })
+                    .catch(() => {
                         Swal.fire({
-                            title: "Deleted Task",
-                            text: "Successfully Delete Task !",
-                            icon: "success",
+                            title: "Error !",
+                            text: "Some thing wrong try Again!",
+                            icon: "error",
                             showConfirmButton: false,
                             timer: 1500,
-        
+
                         });
+                    })
 
-                        refetch();
 
-                    }
-                })
-                .catch(() =>{
-                    Swal.fire({
-                        title: "Error !",
-                        text: "Some thing wrong try Again!",
-                        icon: "error",
-                        showConfirmButton: false,
-                        timer: 1500,
-    
-                    });
-                })
 
-                
-                
             }
         });
 
     }
 
 
-  
+    const HandleUpdatestatus = () => {
+
+        const obj =
+        {
+            "title": title,
+            "description": description,
+            "status": updatestatus
+        }
+
+
+
+
+        axiosFetch.put(`/Updatestatus?ID=${isActive}&columnId=${columnId}&currentStatus=${status}&TaskId=${TaskId}`, obj)
+            .then(res => {
+
+                if (res.data.modifiedCount == 1) {
+                    Swal.fire({
+                        title: "Update status",
+                        text: "Successfully Update status !",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
+                    playSound();
+                    refetch();
+                    setShowDetails(false)
+
+                }
+            })
+            .catch(error => {
+                if (error) {
+                    toast.warn("Somethind went worng try again !", {
+                        position: "top-right",
+                        hideProgressBar: true,
+                        autoClose: 1000,
+                    });
+                }
+            })
+
+    }
+
+
+
+
+
+
 
 
 
@@ -93,7 +175,10 @@ function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,})
                             </div>
                             <div className='w-[10%]'>
 
-                                <button   className='text-gray-600 text-xl '><i className="fa-solid fa-pen-to-square"></i></button>
+                                <button onClick={() => {
+                                    setEditTask(true)
+                                    setShowDetails(false)
+                                }} className='text-gray-600 text-xl '><i className="fa-solid fa-pen-to-square"></i></button>
 
 
                             </div>
@@ -111,15 +196,32 @@ function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,})
                             </div>
 
                         </div>
+                        <div className="py-2 text-base dark:text-black text-black">
+                            <h1 className='mb-2'>You can change status</h1>
+                            <select
+                                name="status"
+                                id="status"
+                                onChange={(e) => { setupdateStatus(e.target.value) }}
+                                value={updatestatus}
+                                className=" select-status w-full text-gray-700 flex-grow px-4 py-2 rounded-md text-base border-[2px] outline-none border-gray-600 focus:border-[#635fc7] "
+                            >
+                                {data?.Columns?.map((element, index) => (
+                                    <option key={index} value={element?.columnName}>
+                                        {element?.columnName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-                        <div className=" flex w-full mt-8 items-center justify-center space-x-4 ">
-                            <button onClick={HandleDelete} className="w-full items-center text-white hover:opacity-75 bg-red-500 py-2 rounded-full">
-                                Delete
-                            </button>
+                        <div className=" flex md:flex-row flex-col w-full gap-5 md:gap-4 mt-8 items-center justify-center">
                             <button
-                                onClick={() => setShowDetails(false)}
-                                className="w-full items-center text-[#635fc7] hover:opacity-75 bg-[#635fc71a]  py-2 rounded-full">
-                                Cancel
+                                onClick={HandleUpdatestatus}
+                                disabled={status == updatestatus}
+                                className="w-full text-base items-center text-[#635fc7]  bg-[#635fc71a] rounded-md py-2 md:rounded-full disabled:bg-blue-500 disabled:text-black disabled:opacity-80">
+                                Update status
+                            </button>
+                            <button onClick={HandleDelete} className="w-full text-base items-center text-white rounded-md hover:opacity-90 bg-red-500 py-2 md:rounded-full">
+                                Delete Task
                             </button>
                         </div>
 
@@ -131,7 +233,8 @@ function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,})
 
 
 
-               
+
+
 
             </>
 
@@ -143,7 +246,7 @@ function ShowTaskDetails({ setShowDetails, Rcvobj, setShowTaskModal, refetch ,})
 
 
 
-
+            <ToastContainer />
 
         </>
     )

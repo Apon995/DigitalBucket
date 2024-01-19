@@ -137,7 +137,7 @@ function Home() {
         >
           <div className="flex md:flex-row flex-col  gap-2 py-24">
             <div className="md:w-[50%] w-full relative">
-              <div className="bg-[#635fc7] h-[92vh] md:w-[70%] relative rounded-sm"></div>
+              <div className="bg-[#635fc7] md:h-[92vh] h-[50vh] md:w-[70%] relative rounded-sm"></div>
               <img
                 src={Customize}
                 alt="Esay to customize"
@@ -148,10 +148,10 @@ function Home() {
             <div className="md:w-[50%] w-full px-[2%]">
               <div className="space-y-4">
                 <div className="section-title">
-                  <h2 className="text-[#292929] font-bold text-5xl tracking-normal mb-5">
+                  <h2 className="text-[#292929] font-bold lg:text-6xl text-4xl tracking-normal mb-5">
                     Easy To Customization
                   </h2>
-                  <p className="text-[#707070] text-xl mr-5 tracking-widest">
+                  <p className="text-[#707070] lg:text-xl text-base mr-5 tracking-widest">
                     This Digital Bucket is Esay to customize & Change your saves !
                     Will you know that our service is secure and long time store
                     system untill you delete your task .
@@ -164,7 +164,7 @@ function Home() {
                       <i className="fa-solid fa-check text-xl font-bold text-[#635fc7]"></i>{" "}
                       Drag &amp; Drop Feature
                     </h3>
-                    <p className="text-[#5d5d5d] tracking-wide">
+                    <p className="text-[#5d5d5d] lg:text-base text-sm tracking-wide">
                       Project familler to Drag and drop the data , suppose you
                       need move data task to complete and on work then you drag
                       start the data and drop your needs columns .
@@ -176,7 +176,7 @@ function Home() {
                       <i className="fa-solid fa-check text-xl font-bold text-[#635fc7]"></i>{" "}
                       live editing
                     </h3>
-                    <p className="text-[#5d5d5d] tracking-wide">
+                    <p className="text-[#5d5d5d] lg:text-base text-sm tracking-wide">
                       Live editing Method , every thing is here for your task !
                       Let's check your Dashboard.
                     </p>
@@ -184,7 +184,7 @@ function Home() {
                   <li>
                     <h3 className="text-[#292929] text-xl font-medium mb-3">
                       {" "}
-                      <i className="fa-solid fa-check text-xl font-bold text-[#635fc7]"></i>{" "}
+                      <i className="fa-solid fa-check lg:text-base text-sm font-bold text-[#635fc7]"></i>{" "}
                       24/7 support
                     </h3>
                     <p className="text-[#5d5d5d] tracking-wide">
@@ -202,163 +202,163 @@ function Home() {
 
         {/* ---Testimonials-section- */}
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <div>
-            <div className="text-center space-y-2">
-              <h2 className="text-[#292929] font-bold text-5xl tracking-normal">
-                Testimonial{" "}
-              </h2>
-            </div>
-
-            <br />
-            <br />
-
-            <Swiper
-              spaceBetween={10}
-              centeredSlides={true}
-              navigation={false}
-              autoplay={{
-                delay: 4500,
-                disableOnInteraction: false,
-              }}
-              modules={[Pagination, Navigation, Autoplay]}
-              className="mySwiper"
-            >
-              <SwiperSlide>
-                <div className="flex md:flex-row flex-col items-center gap-2 ">
-                  <div className="md:w-[40%] w-full">
-                    <img
-                      src={aboutSlide1}
-                      alt=""
-                      className="w-[280px] md:w-fit mx-auto"
-                    />
-                  </div>
-                  <div className="md:w-[55%] w-full ">
-                    <div>
-                      <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
-                        Sarah M,{" "}
-                        <span className="text-[#343a40] md:text-sm text-xs font-normal">
-                          -Freelance Graphic Designer
-                        </span>
-                      </h1>
-                      <br />
-                      <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
-                        As a freelancer juggling multiple projects, DigitalBucket
-                        has become my go-to task management system. The interface
-                        is sleek and easy to navigate, allowing me to create
-                        detailed task lists for each project effortlessly. I love
-                        the flexibility to customize categories and deadlines
-                        based on project needs. The collaborative features have
-                        been a game-changer; sharing progress with clients and
-                        getting their feedback in real-time has improved my
-                        workflow significantly. Highly recommended for fellow
-                        freelancers seeking seamless project management
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="flex md:flex-row flex-col items-center gap-2">
-                  <div className="md:w-[40%] w-full">
-                    <img src={aboutSlide1} alt="" />
-                  </div>
-                  <div className="md:w-[55%] w-full">
-                    <div>
-                      <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
-                        Chris T,{" "}
-                        <span className="text-[#343a40] md:text-sm text-xs font-normal">
-                          Team Lead at TechCo
-                        </span>
-                      </h1>
-                      <br />
-                      <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
-                        DigitalBucket has transformed how our team operates. With
-                        numerous projects on our plate, this platform's
-                        collaborative tools have revolutionized our productivity.
-                        Setting up tasks, assigning them to team members, and
-                        tracking progress has never been simpler. The shared task
-                        lists and deadline reminders keep everyone aligned and
-                        accountable. The ability to integrate with our existing
-                        tools has streamlined our workflow further. Kudos to
-                        DigitalBucket for simplifying team collaboration and
-                        enhancing our efficiency!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="flex md:flex-row flex-col items-center gap-2 ">
-                  <div className="md:w-[40%] w-full">
-                    <img src={aboutSlide1} alt="" />
-                  </div>
-                  <div className="md:w-[55%] w-full">
-                    <div>
-                      <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
-                        chris Yan ,{" "}
-                        <span className="text-[#343a40]  md:text-sm text-xs  font-normal">
-                          Small Business Owner
-                        </span>
-                      </h1>
-                      <br />
-                      <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
-                        DigitalBucket has been a game-changer for my small
-                        business. With a myriad of responsibilities, keeping track
-                        of tasks was overwhelming. This platform's intuitive
-                        interface helped me organize tasks effortlessly. The
-                        ability to prioritize and set deadlines keeps me focused.
-                        What stands out most is the seamless integration with
-                        other apps we use daily. It's made our workflow incredibly
-                        efficient. DigitalBucket has truly simplified task
-                        management for my team, allowing us to focus more on
-                        growing our business!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="flex md:flex-row flex-col items-center gap-2 ">
-                  <div className="md:w-[40%] w-full">
-                    <img src={aboutSlide1} alt="" />
-                  </div>
-                  <div className="md:w-[55%] w-full">
-                    <div>
-                      <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
-                        Shofikul islam,{" "}
-                        <span className="text-[#343a40] md:text-sm text-xs font-normal">
-                          Student & Part-time Writer
-                        </span>
-                      </h1>
-                      <br />
-                      <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
-                        Being a student and a writer means juggling assignments
-                        and personal projects. DigitalBucket has been a lifesaver.
-                        The simplicity of creating task lists and setting
-                        reminders ensures I never miss a deadline. I appreciate
-                        the clean layout and easy navigation, making it
-                        stress-free to manage both my academic and creative tasks.
-                        The flexibility to access it across devices has been
-                        incredibly convenient. If you're a student or someone
-                        balancing multiple responsibilities, I highly recommend
-                        DigitalBucket for its user-friendly approach to task
-                        management.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            </Swiper>
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2 }}
+      >
+        {/* ---Testimonials-section- */}
+        <div>
+          <div className="text-center space-y-2">
+            <h2 className="text-[#292929] font-bold text-5xl tracking-normal">
+              Testimonial{" "}
+            </h2>
           </div>
 
-        </motion.div>
+          <br />
+          <br />
+
+          <Swiper
+            spaceBetween={10}
+            centeredSlides={true}
+            navigation={false}
+            autoplay={{
+              delay: 4500,
+              disableOnInteraction: false,
+            }}
+            modules={[Pagination, Navigation, Autoplay]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <div className="flex md:flex-row flex-col items-center gap-2 ">
+                <div className="md:w-[40%] w-full">
+                  <img
+                    src={aboutSlide1}
+                    alt=""
+                    className="w-[280px] md:w-fit mx-auto"
+                  />
+                </div>
+                <div className="md:w-[55%] w-full ">
+                  <div>
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
+                      Sarah M,{" "}
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
+                        -Freelance Graphic Designer
+                      </span>
+                    </h1>
+                    <br />
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                      As a freelancer juggling multiple projects, DigitalBucket
+                      has become my go-to task management system. The interface
+                      is sleek and easy to navigate, allowing me to create
+                      detailed task lists for each project effortlessly. I love
+                      the flexibility to customize categories and deadlines
+                      based on project needs. The collaborative features have
+                      been a game-changer; sharing progress with clients and
+                      getting their feedback in real-time has improved my
+                      workflow significantly. Highly recommended for fellow
+                      freelancers seeking seamless project management
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="flex md:flex-row flex-col items-center gap-2">
+                <div className="md:w-[40%] w-full">
+                  <img src={aboutSlide1} alt="" />
+                </div>
+                <div className="md:w-[55%] w-full">
+                  <div>
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
+                      Chris T,{" "}
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
+                        Team Lead at TechCo
+                      </span>
+                    </h1>
+                    <br />
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                      DigitalBucket has transformed how our team operates. With
+                      numerous projects on our plate, this platform's
+                      collaborative tools have revolutionized our productivity.
+                      Setting up tasks, assigning them to team members, and
+                      tracking progress has never been simpler. The shared task
+                      lists and deadline reminders keep everyone aligned and
+                      accountable. The ability to integrate with our existing
+                      tools has streamlined our workflow further. Kudos to
+                      DigitalBucket for simplifying team collaboration and
+                      enhancing our efficiency!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="flex md:flex-row flex-col items-center gap-2 ">
+                <div className="md:w-[40%] w-full">
+                  <img src={aboutSlide1} alt="" />
+                </div>
+                <div className="md:w-[55%] w-full">
+                  <div>
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
+                      chris Yan ,{" "}
+                      <span className="text-[#343a40]  lg:text-sm text-xs  font-normal">
+                        Small Business Owner
+                      </span>
+                    </h1>
+                    <br />
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                      DigitalBucket has been a game-changer for my small
+                      business. With a myriad of responsibilities, keeping track
+                      of tasks was overwhelming. This platform's intuitive
+                      interface helped me organize tasks effortlessly. The
+                      ability to prioritize and set deadlines keeps me focused.
+                      What stands out most is the seamless integration with
+                      other apps we use daily. It's made our workflow incredibly
+                      efficient. DigitalBucket has truly simplified task
+                      management for my team, allowing us to focus more on
+                      growing our business!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="flex md:flex-row flex-col items-center gap-2 ">
+                <div className="md:w-[40%] w-full">
+                  <img src={aboutSlide1} alt="" />
+                </div>
+                <div className="md:w-[55%] w-full">
+                  <div>
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
+                      Shofikul islam,{" "}
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
+                        Student & Part-time Writer
+                      </span>
+                    </h1>
+                    <br />
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                      Being a student and a writer means juggling assignments
+                      and personal projects. DigitalBucket has been a lifesaver.
+                      The simplicity of creating task lists and setting
+                      reminders ensures I never miss a deadline. I appreciate
+                      the clean layout and easy navigation, making it
+                      stress-free to manage both my academic and creative tasks.
+                      The flexibility to access it across devices has been
+                      incredibly convenient. If you're a student or someone
+                      balancing multiple responsibilities, I highly recommend
+                      DigitalBucket for its user-friendly approach to task
+                      management.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </motion.div>
 
         <br />
         <br />
@@ -371,21 +371,21 @@ function Home() {
         >
           <div className="flex md:flex-row flex-col md:gap-2 gap-10 py-24">
             <div className="md:w-[50%] relative">
-              <div className="bg-[#635fc7] h-[92vh] md:w-[90%] relative rounded-sm"></div>
+              <div className="bg-[#635fc7] md:h-[92vh] h-[50vh] md:w-[90%] relative rounded-sm"></div>
               <img
                 src={Review}
                 alt="Esay to customize"
-                className="absolute w-[85%] top-0 left-16"
+                className="absolute w-[85%] top-[50px] md:left-16 left-[27px] md:top-0 "
               />
             </div>
 
             <div className="md:w-[50%] px-[2%]">
               <div className="space-y-4">
                 <div className="section-title">
-                  <h2 className="text-[#292929] font-bold text-5xl tracking-normal mb-5">
+                  <h2 className="text-[#292929] font-bold lg:text-6xl text-4xl tracking-normal mb-5">
                     Ratings & Reviews
                   </h2>
-                  <p className="text-[#707070] text-xl mr-5 tracking-tight">
+                  <p className="text-[#707070] lg:text-xl text-base mr-5 tracking-tight">
                     Digital Bucket has revolutionized how I manage tasks! Its
                     intuitive interface makes organizing my to-dos a breeze. The
                     diverse range of features, from customizable categories to
@@ -396,7 +396,7 @@ function Home() {
                     streamlined, efficient task management system.
                   </p>
                   <br />
-                  <p className="text-[#707070] text-xl mr-5 tracking-tight">
+                  <p className="text-[#707070] lg:text-xl text-base mr-5 tracking-tight">
                     {" "}
                     In summary, Digital Bucket is just a task management system;
                     it's a catalyst for enhanced efficiency and teamwork. I highly
@@ -422,7 +422,7 @@ function Home() {
           transition={{ duration: 2 }}
         >
           <div className="md:px-[4%] px-[2%]">
-            <h2 className="text-[#292929] font-bold text-5xl tracking-normal text-center">
+            <h2 className="text-[#292929] font-bold lg:text-6xl text-4xl tracking-normal text-center">
               our service's For{" "}
             </h2>
 
@@ -523,7 +523,7 @@ function Home() {
         >
           <div
             id="Contact"
-            className="flex gap-2 md:flex-row-reverse items-center flex-col w-full mt-20 px-[2%]"
+            className="flex md:gap-2 gap-9 md:flex-row-reverse items-center flex-col w-full md:mt-20 my-10 px-[2%]"
           >
             <div className="lg:w-[40%] md:w-[50%] w-full  ">
               <form id="contact" onSubmit={(e) => e.preventDefault()}>

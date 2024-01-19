@@ -1,5 +1,7 @@
 import axios from 'axios'
-import React from 'react'
+import { useEffect } from 'react';
+import useAuth from '../CustomHooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 const axiosFetch = axios.create({
@@ -10,6 +12,28 @@ const axiosFetch = axios.create({
 })
 
 function useFetch() {
+  const auth = useAuth()
+
+
+
+  useEffect(() => {
+    const interceptor = axiosFetch.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      
+          auth && auth.LogOut();
+         
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      
+      axiosFetch.interceptors.response.eject(interceptor);
+    };
+  }, [auth]);
 
   return axiosFetch;
 }

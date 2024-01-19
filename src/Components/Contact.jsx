@@ -20,7 +20,7 @@ function Contact() {
             <div className='text-center space-y-2'>
               <h1 className='md:text-4xl text-3xl font-semibold text-[#000]'>Contact us Now !</h1>
 
-              <p className='text-base font-normal text-[#54595F]'>Asslamwaikum , welcome to Digital Bucket, <br />This is Task management system ! how can i help you ? </p>
+              <p className='text-base font-normal text-[#54595F] text-wrap'>Asslamwaikum , welcome to Digital Bucket, <br className="md:block hidden" />This is Task management system ! how can i help you ? </p>
             </div>
 
 

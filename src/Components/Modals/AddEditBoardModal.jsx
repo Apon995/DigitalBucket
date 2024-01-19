@@ -40,25 +40,9 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
         const obj = {
             "user": user?.email || "anynomous",
             "BoardName": board.get('BoardName').trim().replace(/\s+/g, ' '),
-            "Columns": [
-                {
-                    "id": 1,
-                    "columnName": board.get('FirstColumn').trim().replace(/\s+/g, ' '),
-                    "Task": []
-                },
-                {
-                    "id": 2,
-                    "columnName": board.get('SecondColumn').trim().replace(/\s+/g, ' '),
-                    "Task": []
-                },
-                {
-                    "id": 3,
-                    "columnName": board.get('ThirdColumn').trim().replace(/\s+/g, ' '),
-                    "Task": []
-                }
-
-            ],
-
+            "firstColumn": board.get('FirstColumn').trim().replace(/\s+/g, ' '),
+            "secondColumn": board.get('SecondColumn').trim().replace(/\s+/g, ' '),
+            "thirdColumn": board.get('ThirdColumn').trim().replace(/\s+/g, ' '),
         }
 
 
@@ -66,11 +50,13 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
         axiosFetch.post('/createBoard', obj)
             .then(res => {
                 if (res.data?.insertedId) {
-                    toast.success("successfully added Todo !", {
-                        position: "top-right",
-                        hideProgressBar: true,
-                        autoClose: 1000
-                    })
+                    Swal.fire({
+                        title: "Added Board !",
+                        text: "Successfully Added Board !",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                     e.target.reset();
                     refetch()
                     setShowBoardModal(false)
@@ -123,7 +109,7 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
 
         axiosFetch.put(`/UpdateBoard?ID=${isActive}`, obj)
             .then(res => {
-                console.log(res.data)
+
                 if (res?.data?.modifiedCount == 1) {
                     Swal.fire({
                         title: "Modified",
@@ -188,6 +174,7 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
                                         type="text"
                                         name="BoardName"
                                         id="BoardName"
+                                        autoComplete="off"
                                         required
                                         className=" bg-transparent  px-4 py-2 rounded-md text-sm border-[2px] outline-none border-gray-600 focus:border-[#635fc7] "
                                         placeholder=" e.g Web Design"
@@ -206,6 +193,7 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
                                             required
                                             className=" w-full bg-transparent flex-grow px-4 py-2 rounded-md text-sm outline-none border-[2px] border-gray-600 focus:border-[#635fc7]"
                                             type="text"
+                                            autoComplete="off"
                                             name="FirstColumn"
                                             id="FirstColumn"
                                             placeholder="example Todo"
@@ -215,6 +203,7 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
                                             className=" w-full bg-transparent flex-grow px-4 py-2 rounded-md text-sm outline-none border-[2px] border-gray-600 focus:border-[#635fc7]"
                                             type="text"
                                             name="SecondColumn"
+                                            autoComplete="off"
                                             id="SecondColumn"
                                             placeholder="example Doing"
                                         />
@@ -223,6 +212,7 @@ function AddEditBoardModal({ setShowBoardModal, refetch, Type, isActive }) {
                                             className=" w-full bg-transparent flex-grow px-4 py-2 rounded-md text-sm outline-none border-[2px] border-gray-600 focus:border-[#635fc7]"
                                             type="text"
                                             name="ThirdColumn"
+                                            autoComplete="off"
                                             id="ThirdColumn"
                                             placeholder="example Done"
                                         />

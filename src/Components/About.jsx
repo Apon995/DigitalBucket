@@ -35,7 +35,7 @@ function About() {
             </h1>
             <br />
 
-            <p className="text-[#707070] md:text-[18px] text-sm tracking-widest">
+            <p className="text-[#707070] lg:text-[18px] text-sm tracking-widest">
 
               At Digital Bucket, we believe in the transformative power of organization and purposeful task management. Born from a passion for efficiency and fueled by the relentless pursuit of productivity, we've crafted a platform designed to turn aspirations into accomplishments.
               <br />
@@ -309,14 +309,14 @@ function About() {
                 </div>
                 <div className="md:w-[55%] w-full ">
                   <div>
-                    <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
                       Sarah M,{" "}
-                      <span className="text-[#343a40] md:text-sm text-xs font-normal">
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
                         -Freelance Graphic Designer
                       </span>
                     </h1>
                     <br />
-                    <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
                       As a freelancer juggling multiple projects, DigitalBucket
                       has become my go-to task management system. The interface
                       is sleek and easy to navigate, allowing me to create
@@ -340,14 +340,14 @@ function About() {
                 </div>
                 <div className="md:w-[55%] w-full">
                   <div>
-                    <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
                       Chris T,{" "}
-                      <span className="text-[#343a40] md:text-sm text-xs font-normal">
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
                         Team Lead at TechCo
                       </span>
                     </h1>
                     <br />
-                    <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
                       DigitalBucket has transformed how our team operates. With
                       numerous projects on our plate, this platform's
                       collaborative tools have revolutionized our productivity.
@@ -371,14 +371,14 @@ function About() {
                 </div>
                 <div className="md:w-[55%] w-full">
                   <div>
-                    <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
                       chris Yan ,{" "}
-                      <span className="text-[#343a40]  md:text-sm text-xs  font-normal">
+                      <span className="text-[#343a40]  lg:text-sm text-xs  font-normal">
                         Small Business Owner
                       </span>
                     </h1>
                     <br />
-                    <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
                       DigitalBucket has been a game-changer for my small
                       business. With a myriad of responsibilities, keeping track
                       of tasks was overwhelming. This platform's intuitive
@@ -402,14 +402,14 @@ function About() {
                 </div>
                 <div className="md:w-[55%] w-full">
                   <div>
-                    <h1 className="md:text-3xl text-base font-[600] text-[#2742fd]">
+                    <h1 className="lg:text-3xl text-base font-[600] text-[#2742fd]">
                       Shofikul islam,{" "}
-                      <span className="text-[#343a40] md:text-sm text-xs font-normal">
+                      <span className="text-[#343a40] lg:text-sm text-xs font-normal">
                         Student & Part-time Writer
                       </span>
                     </h1>
                     <br />
-                    <p className="md:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
+                    <p className="lg:text-xl text-sm text-[#292929] leading-[1.6] font-medium">
                       Being a student and a writer means juggling assignments
                       and personal projects. DigitalBucket has been a lifesaver.
                       The simplicity of creating task lists and setting

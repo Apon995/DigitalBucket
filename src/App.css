@@ -7,14 +7,11 @@
 /* ---brower-scroll-bar-css-- */
 ::-webkit-scrollbar {
   width: 8px;
-  
-  
 }
 
 ::-webkit-scrollbar-thumb {
   background: #635fc7;
   border-radius: 8px;
-  
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -40,6 +37,13 @@ body {
   border-bottom: 4px solid #063970;
   padding-bottom: 2px;
   border-radius: 2px;
+}
+
+#navtag {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* ---Banner-css--- */
@@ -228,10 +232,8 @@ form#contact button:hover {
 
 /* ----Dashboard-desgin-- */
 
-#activeTodo > .active{
+#activeTodo > .active {
   background-color: #635fc7;
-  color:white;
+  color: white;
   transition: all 1s;
-
-
 }

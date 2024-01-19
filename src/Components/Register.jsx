@@ -39,12 +39,18 @@ function Register() {
                         autoClose: 3000
                     })
 
-                    
+
 
                 }
 
             })
-            .catch(error => console.log(error))
+            .catch(() => {
+                toast.warning("Something worng try again !", {
+                    position: "top-right",
+                    hideProgressBar: true,
+                    autoClose: 1500
+                })
+            })
 
 
 
@@ -67,7 +73,7 @@ function Register() {
                     }, 2000);
 
                 }
-                
+
             })
             .catch(error => {
                 console.log(error)
@@ -82,7 +88,7 @@ function Register() {
                 <br />
                 <br />
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <div className="w-full bg-white shadow-lg rounded-lg  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white text-black ">
+                    <div className="w-full bg-white z-50 shadow-xl rounded-lg  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white text-black ">
 
                         <div className='flex items-center gap-1 mx-auto text-center justify-center'>
                             <img src={Logo} alt="Logo" className='w-[30px]' />
@@ -97,17 +103,17 @@ function Register() {
                             <form onSubmit={HandleRegister} className="space-y-4 md:space-y-6" >
                                 <div>
                                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your Name</label>
-                                    <input type="name" name="name" id="name" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your Name " required />
+                                    <input autoComplete='true' type="name" name="name" id="name" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your Name " required />
                                 </div>
 
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your email</label>
-                                    <input type="email" name="email" required id="email" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your email " />
+                                    <input autoComplete='true' type="email" name="email" required id="email" className="  sm:text-sm rounded-lg border-2 focus:border-[#635fc7] outline-none duration-300 block w-full p-2.5 dark:bg-white text-black dark:placeholder-gray-400 dark:text-black  " placeholder="Enter your email " />
                                 </div>
 
                                 <div className='relative'>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Create Password</label>
-                                    <input type={`${eye ? 'password' : 'text'}`} name="password" id="password" placeholder="Create your password" className=" text-black border-2 focus:border-[#635fc7] outline-none duration-300 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-white  dark:placeholder-gray-400 dark:text-black  bg-white " required />
+                                    <input autoComplete='true' type={`${eye ? 'password' : 'text'}`} name="password" id="password" placeholder="Create your password" className=" text-black border-2 focus:border-[#635fc7] outline-none duration-300 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-white  dark:placeholder-gray-400 dark:text-black  bg-white " required />
                                     <button onClick={() => setEye(!eye)} className='absolute top-[39px] left-[350px]'><i className={`fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'} `}></i></button>
                                 </div>
 
@@ -117,7 +123,8 @@ function Register() {
                             </form>
 
 
-                            <p className='or-span text-black text-xl tracking-widest text-center'>--------------&&---------------</p>
+                            <p className='or-span text-black text-xl tracking-widest text-center hidden md:block'>--------------&&---------------</p>
+                            <p className='or-span text-black text-xl tracking-widest text-center md:hidden'>---------&----------</p>
                             <div className='social-icons'>
                                 <button onClick={HandleGoogleLogin}><i className="fa-brands fa-google"></i></button>
                                 <button><i className="fa-brands fa-facebook"></i></button>

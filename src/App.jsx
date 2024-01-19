@@ -25,14 +25,14 @@ function App() {
       {
         Load ? <StartOnLoad /> :
           <>
-
-            <header>
+            <header id="navtag">
 
               <Navbar />
-              <Banner />
             </header>
 
-            <main className='min-h-screen'>
+
+            <main className='min-h-screen '>
+              <Banner />
 
               {
                 Navigation.state == 'idle' ?
@@ -42,7 +42,7 @@ function App() {
             </main>
 
 
-            <footer>
+            <footer >
               <Footer />
 
             </footer>

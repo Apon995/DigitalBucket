@@ -7,8 +7,10 @@ function Private({ children }) {
     const { user, loading } = useAuth();
     const location = useLocation();
 
+    
     if (loading) {
         return <StartOnLoad/>
+        
     }
 
 
