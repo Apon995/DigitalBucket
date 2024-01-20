@@ -64,7 +64,7 @@ function DashboardNav({ ToggleSidebar, setShowSidebar, ShowSidebar, setType, isA
           className=" absolute w-40 text-sm z-50 font-medium shadow-md shadow-[#364e7e1a] bg-white dark:bg-white space-y-4 py-5 px-4 rounded-lg  h-auto right-[25px]">
           <button onClick={() => navigate('/')} className="cursor-pointer dark:text-gray-700 text-gray-700 font-semibold">Back Home</button>
           <button onClick={() => { setShowSidebar(!ShowSidebar), ToggleSidebar(), setPopup(false) }} className="md:hidden cursor-pointer dark:text-gray-700 text-gray-700 font-semibold">{ShowSidebar ? 'Show All board' : 'Hide All Board'}</button>
-          <button onClick={() => { setShowTaskModal(!ShowTaskModal), setPopup(false),ToggleSidebar() }} className={`${!isActive ? 'hidden' : ''} md:hidden cursor-pointer dark:text-gray-700 text-gray-700 font-semibold`}>Add New Task</button>
+          <button onClick={() => { setShowTaskModal(!ShowTaskModal), setPopup(false), !ShowSidebar ? ToggleSidebar() : '' }} className={`${!isActive ? 'hidden' : ''} md:hidden cursor-pointer dark:text-gray-700 text-gray-700 font-semibold`}>Add New Task</button>
           <button onClick={() => { setEditPopup(!EditPopup), setPopup(!Popup) }} className=" cursor-pointer dark:text-gray-700 text-gray-700 font-semibold">
             Edit Boards
           </button>

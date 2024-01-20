@@ -1,8 +1,5 @@
 This is a Task Management Website ;
 
-live link : 
+live link : https://digitalbucket-6bd49.web.app/
 
 
-some features : 
-
-1 .This Task management project creat by react jsx and tailwind css .

@@ -114,7 +114,7 @@ function Register() {
                                 <div className='relative'>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Create Password</label>
                                     <input autoComplete='true' type={`${eye ? 'password' : 'text'}`} name="password" id="password" placeholder="Create your password" className=" text-black border-2 focus:border-[#635fc7] outline-none duration-300 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-white  dark:placeholder-gray-400 dark:text-black  bg-white " required />
-                                    <button onClick={() => setEye(!eye)} className='absolute top-[39px] left-[350px]'><i className={`fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'} `}></i></button>
+                                    <button onClick={() => setEye(!eye)} className='absolute top-[39px] md:left-[350px] left-[265px]'><i className={`fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'} `}></i></button>
                                 </div>
 
 
